@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>动态散花背景</title>
+ <script src="jquery.min.js"></script>
 <meta name="description" content="Change OR Die" />
 
 </head>
@@ -25,11 +26,12 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
     border-bottom:solid 1px pink;
     color: pink;
   }
+body{
+  cursor:pointer;
+}
 </style>
 
-  <canvas id="sakura">
-
-  </canvas>
+  <canvas id="sakura"> </canvas>
   <div class="pp">
     <p>愿你三冬暖，愿你春不寒；</p>
     <p>愿你天黑有灯，下雨有伞。</p>
@@ -44,10 +46,18 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
     <p>看透了是非善恶；从此福来心至，皆是逍遥。</p>
     <p>等你走后我还是会想你的，想到你我还会傻傻的笑   ------   你身后永远的小兵</p>
   </div>
-  <embed src="G.E.M.邓紫棋+-+桃花诺.mp3" hidden="true" autostart="true" loop="true">
-
-
+<audio id="music1" controls="controls" autoplay="autoplay" preload id="music1" loop="loop" hidden>
+  <source src="G.E.M.邓紫棋+-+桃花诺.mp3" />
+</audio>
+<!--这里是音乐-->
 <!-- sakura shader -->
+<!--<script >-->
+ <!--audiojs.events.ready(function() {-->
+        <!--audiojs.createAll({-->
+             <!--autoplay:'true'-->
+        <!--});-->
+      <!--});-->
+<!--</script>-->
 <script id="sakura_point_vsh" type="x-shader/x_vertex">
 uniform mat4 uProjection;
 uniform mat4 uModelview;
@@ -333,7 +343,15 @@ void main(void) {
     gl_FragColor.a = 1.0;
 }
 </script>
+<script>
+    var audio = document.getElementById('music1');
+    $("body").bind("click", function bf() {
+                audio.play()
+    })
 
+    // 写到了这里大部分安卓机就基本可以实现自动播放了，但是苹果手机在这个时候还是不行的
+    // 这里我采用了一个在加载页中加入一个按钮，当加载完成的时候，点击按钮，引导用户完成背景音乐的自动播放，代码如下：
+</script>
   <script src="js/index.js"></script>
 <div style="text-align:center;">
 </div>
